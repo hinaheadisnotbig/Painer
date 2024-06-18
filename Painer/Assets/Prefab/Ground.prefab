@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 447979756503394595}
   - component: {fileID: 447979756503394590}
   - component: {fileID: 447979756503394593}
-  - component: {fileID: 447979756503394592}
+  - component: {fileID: 2379119615517655417}
   m_Layer: 0
   m_Name: Ground_under
   m_TagString: Untagged
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447979756503394594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.852512, y: -1.4206281, z: 2.6232395}
-  m_LocalScale: {x: 5, y: 3, z: 15}
+  m_LocalPosition: {x: 3.8524, y: -1.4538, z: 2.6366}
+  m_LocalScale: {x: 5.0005, y: 3.0663, z: 14.820528}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 447979757803624310}
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &447979756503394592
+--- !u!65 &2379119615517655417
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,10 +108,10 @@ GameObject:
   - component: {fileID: 447979756724599040}
   - component: {fileID: 447979756724599167}
   - component: {fileID: 447979756724599166}
-  - component: {fileID: 447979756724599041}
+  - component: {fileID: 8926857934407953746}
   m_Layer: 0
   m_Name: Ground_on
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +181,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &447979756724599041
+--- !u!65 &8926857934407953746
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,7 +192,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0.99999994, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &447979757803624313
 GameObject:
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 447979757803624310}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,7 +218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447979757803624313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0041251, y: 5.467199, z: -11.638139}
+  m_LocalPosition: {x: -3.16, y: 5.467199, z: -11.638139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
