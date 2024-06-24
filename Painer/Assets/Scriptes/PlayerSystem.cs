@@ -9,11 +9,14 @@ public class PlayerSystem : MonoBehaviour
     public CameraMove cam;
     public float speed = 5f;
     public bool isjumping = false;
+    public bool notmoving = false;
+    private bool jumppossible = true;
+    private float tempJumpPower = 0f;
     private Rigidbody characterRigidbody;
-    public float jumpPower = 7;
+    public float jumpPower = 20;
     Vector3 dir = Vector3.zero;
 
-    void Start()
+    void Awake()
     {
         characterRigidbody = GetComponent<Rigidbody>();
     }
@@ -37,26 +40,28 @@ public class PlayerSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && !isjumping)
+        if (Input.GetKey(KeyCode.Space) && !isjumping && jumppossible)
         {
-            isjumping = true;
+            isjumping = true; jumppossible = false;
             characterRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            StartCoroutine(JumpCooltime(2.0f));
         }
         inputAndDir();
     }
     void FixedUpdate()
     {
-        characterRigidbody.MovePosition(characterRigidbody.position + dir * speed * Time.deltaTime);
+       if (!notmoving) characterRigidbody.MovePosition(transform.position + dir * speed * Time.deltaTime);
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay (Collision collision)
     {
-        UnityEngine.Debug.Log("¥Í¿Ω");
-        if(collision.transform.tag == "Ground")
-        {
-            isjumping = false;
-            UnityEngine.Debug.Log("1");
-        }
+        if(collision.transform.tag == "Ground" && isjumping) isjumping = false;
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        isjumping = true;
+    }
+
+
 
     public void MovePlayer(int mode)
     {
@@ -70,19 +75,41 @@ public class PlayerSystem : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("jumpblock"))
+        {
+            jumpPower = tempJumpPower;
+            UnityEngine.Debug.Log(tempJumpPower);
+
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.CompareTag("mode1"))
+        if (other.transform.CompareTag("jumpblock"))
         {
-            cam.ChangeCameraMode(0);
-            Destroy(other);
+            isjumping = false;
+            tempJumpPower = jumpPower;
+            jumpPower = other.gameObject.GetComponent<JumpBlock>().Jumpvaule;
+            UnityEngine.Debug.Log("π·¿Ω");
         }
-        if (other.transform.CompareTag("mode2"))
+        if (other.transform.CompareTag("event"))
         {
-            cam.ChangeCameraMode(1);
+            UnityEngine.Debug.Log("¿Ã∫•∆Æ");
+            cam.ChangeCameraMode(other.GetComponent<ChangeBlock>().modevaule);
             Destroy(other);
         }
     }
+
+    IEnumerator JumpCooltime(float t)
+    {
+        yield return new WaitForSeconds(t);
+        jumppossible = true;
+    }
+
+  
+
+   
 
 }
 

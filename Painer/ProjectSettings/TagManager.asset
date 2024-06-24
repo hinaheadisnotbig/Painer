@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - mode1
-  - mode2
+  - jumpblock
+  - Wall
+  - event
   layers:
   - Default
   - TransparentFX

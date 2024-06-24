@@ -355,6 +355,9 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scriptes/BackGroundSystem.cs"
 "Assets/Scriptes/CameraMove.cs"
+"Assets/Scriptes/ChangeBlock.cs"
+"Assets/Scriptes/JumpBlock.cs"
+"Assets/Scriptes/MoveBlock.cs"
 "Assets/Scriptes/PlayerSystem.cs"
 -langversion:9.0
 
