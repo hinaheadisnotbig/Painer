@@ -7,13 +7,16 @@ using UnityEngine;
 public class PlayerSystem : MonoBehaviour
 {
     public CameraMove cam;
+
     public float speed = 5f;
     public bool isjumping = false;
     public bool notmoving = false;
-    private bool jumppossible = true;
-    private float tempJumpPower = 0f;
-    private Rigidbody characterRigidbody;
+    public bool jumppossible = true;
+    public float tempJumpPower = 0f;
     public float jumpPower = 20;
+    public bool Dead = false;
+
+    private Rigidbody characterRigidbody;
     Vector3 dir = Vector3.zero;
 
     void Awake()
@@ -27,10 +30,15 @@ public class PlayerSystem : MonoBehaviour
         dir.z = Input.GetAxis("Vertical");   // x축 방향 키 입력
         dir.x = 0;     // z축 방향 키 입력
         }
-          if (cam.cameraMode == 1)
+          if (cam.cameraMode == 1 || cam.cameraMode == 2)
         {
         dir.x = Input.GetAxis("Horizontal");   // x축 방향 키 입력
         dir.z = Input.GetAxis("Vertical");     // z축 방향 키 입력
+        }
+        if (cam.cameraMode == 3)
+        {
+            dir.x = Input.GetAxis("Horizontal");   // x축 방향 키 입력
+            dir.z = Input.GetAxis("Vertical");     // z축 방향 키 입력
         }
         if (dir != Vector3.zero)   // 키입력이 존재하는 경우
         {
@@ -44,13 +52,17 @@ public class PlayerSystem : MonoBehaviour
         {
             isjumping = true; jumppossible = false;
             characterRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-            StartCoroutine(JumpCooltime(2.0f));
+            StartCoroutine(JumpCooltime(1.5f));
         }
         inputAndDir();
     }
     void FixedUpdate()
     {
-       if (!notmoving) characterRigidbody.MovePosition(transform.position + dir * speed * Time.deltaTime);
+        if (notmoving == false)
+        {
+            if (cam.cameraMode == 3) characterRigidbody.MovePosition(transform.position + -1 * dir * speed * Time.deltaTime);
+            else characterRigidbody.MovePosition(transform.position + dir * speed * Time.deltaTime);
+        }
     }
     private void OnCollisionStay (Collision collision)
     {
@@ -69,10 +81,10 @@ public class PlayerSystem : MonoBehaviour
         {
             transform.position = new Vector3(4.93f, transform.position.y, transform.position.z);
         }
-        if (mode == 1)
-        {
-            transform.position = new Vector3(2.85f, transform.position.y, transform.position.z);
-        }
+        //if (mode == 1)
+       // {
+       //     transform.position = new Vector3(2.85f, transform.position.y, transform.position.z);
+       // }
     }
 
     private void OnTriggerExit(Collider other)
@@ -97,7 +109,11 @@ public class PlayerSystem : MonoBehaviour
         {
             UnityEngine.Debug.Log("이벤트");
             cam.ChangeCameraMode(other.GetComponent<ChangeBlock>().modevaule);
-            Destroy(other);
+            other.gameObject.SetActive(false);
+        }
+        if (other.transform.CompareTag("Death"))
+        {
+            Dead = true;
         }
     }
 
@@ -107,7 +123,7 @@ public class PlayerSystem : MonoBehaviour
         jumppossible = true;
     }
 
-  
+
 
    
 

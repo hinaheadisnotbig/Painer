@@ -356,9 +356,15 @@
 "Assets/Scriptes/BackGroundSystem.cs"
 "Assets/Scriptes/CameraMove.cs"
 "Assets/Scriptes/ChangeBlock.cs"
+"Assets/Scriptes/DeathSystem.cs"
+"Assets/Scriptes/FreeCameraSystem.cs"
+"Assets/Scriptes/GameOverSystem.cs"
 "Assets/Scriptes/JumpBlock.cs"
+"Assets/Scriptes/KeyBlockSystem.cs"
 "Assets/Scriptes/MoveBlock.cs"
 "Assets/Scriptes/PlayerSystem.cs"
+"Assets/Scriptes/SpawnPointSystem.cs"
+"Assets/Scriptes/UsefulkeySystem.cs"
 -langversion:9.0
 
 /deterministic
