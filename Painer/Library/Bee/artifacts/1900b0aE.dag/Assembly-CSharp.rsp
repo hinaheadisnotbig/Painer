@@ -358,11 +358,13 @@
 "Assets/Scriptes/ChangeBlock.cs"
 "Assets/Scriptes/DeathSystem.cs"
 "Assets/Scriptes/FreeCameraSystem.cs"
+"Assets/Scriptes/Gameoverbutton.cs"
 "Assets/Scriptes/GameOverSystem.cs"
 "Assets/Scriptes/JumpBlock.cs"
 "Assets/Scriptes/KeyBlockSystem.cs"
 "Assets/Scriptes/MoveBlock.cs"
 "Assets/Scriptes/PlayerSystem.cs"
+"Assets/Scriptes/ScreenEffect.cs"
 "Assets/Scriptes/SpawnPointSystem.cs"
 "Assets/Scriptes/UsefulkeySystem.cs"
 -langversion:9.0

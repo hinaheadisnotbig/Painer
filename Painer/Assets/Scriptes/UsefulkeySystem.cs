@@ -10,7 +10,7 @@ public class UsefulkeySystem : MonoBehaviour
         if(other.CompareTag("Player")) {
             keySystem.GetComponent<KeyBlockSystem>().isopened = true;
             Debug.Log(keySystem.GetComponent<KeyBlockSystem>().isopened);
-            other.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
        
     }

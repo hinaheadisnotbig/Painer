@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class FreeCameraSystem : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class FreeCameraSystem : MonoBehaviour
     public GameObject firstStartplace;
     public GameObject target2;
     public GameObject cam;
+    public GameObject camplace;
     public int setmode = 0;
     public bool cam2 = false;
     public bool isworked = false;
@@ -17,9 +19,11 @@ public class FreeCameraSystem : MonoBehaviour
 
     private void Start()
     {
+        camplace.transform.position = transform.position;
         target.gameObject.SetActive(false);
         target2.gameObject.SetActive(false);
         firstStartplace.gameObject.SetActive(false);
+        camplace.gameObject.SetActive(false);
         Startplace.gameObject.SetActive(false);
     }
     void Update()
@@ -60,6 +64,7 @@ public class FreeCameraSystem : MonoBehaviour
         yield return null;
         Debug.Log("코루틴 끝");
         c.isfreemode = false;
+        transform.position = camplace.transform.position;
         transform.gameObject.SetActive(false);
     }
 

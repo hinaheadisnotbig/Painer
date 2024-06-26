@@ -7,13 +7,16 @@ using UnityEngine;
 public class PlayerSystem : MonoBehaviour
 {
     public CameraMove cam;
+    public GameObject spawnpoint;
+    public GameObject Screeneffect;
+    public GameObject Game;
 
     public float speed = 5f;
     public bool isjumping = false;
     public bool notmoving = false;
-    public bool jumppossible = true;
-    public float tempJumpPower = 0f;
-    public float jumpPower = 20;
+    private bool jumppossible = true;
+    private float tempJumpPower = 0f;
+    public float jumpPower = 20f;
     public bool Dead = false;
 
     private Rigidbody characterRigidbody;
@@ -113,7 +116,14 @@ public class PlayerSystem : MonoBehaviour
         }
         if (other.transform.CompareTag("Death"))
         {
-            Dead = true;
+            if (Dead == false)
+            {
+                UnityEngine.Debug.Log("»ç¸Á");
+                Screeneffect.transform.gameObject.SetActive(true);
+                Screeneffect.GetComponent<ScreenEffect>().fadeln(1);
+                Dead = true;
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -123,9 +133,25 @@ public class PlayerSystem : MonoBehaviour
         jumppossible = true;
     }
 
+    public bool getjumppossible()
+    {
+        return jumppossible;
+    }
+    public void setjumppossible(bool j)
+    {
+        jumppossible = j;
+    }
+    public float gettempJumpPower()
+    {
+        return tempJumpPower;
+    }
+    public void settempJumpPower(float j)
+    {
+        tempJumpPower = j;
+    }
 
 
-   
+
 
 }
 

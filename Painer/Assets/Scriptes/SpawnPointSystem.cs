@@ -5,8 +5,17 @@ using UnityEngine;
 public class SpawnPointSystem : MonoBehaviour
 {
     public GameObject player;
+    public bool test = false;
     private void Start()
     {
-        player.transform.position = transform.position;
+        if(test) player.transform.position = transform.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.CompareTag("Player"))
+        {
+            player.GetComponent<PlayerSystem>().spawnpoint = gameObject;
+        }
     }
 }
