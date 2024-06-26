@@ -43,12 +43,13 @@ public class GameOverSystem : MonoBehaviour
         }
         for (int i = 0; i < key.transform.childCount; i++)
         {
+            key.transform.GetChild(i).GetComponent<KeyBlockSystem>().isopened = false;
             key.transform.GetChild(i).transform.GetChild(0).gameObject.SetActive(true);
             key.transform.GetChild(i).transform.GetChild(1).gameObject.SetActive(true);
         }
         p.transform.position = p.spawnpoint.transform.position;
         p.Dead = false;
-        camo.ChangeCameraMode(0);
+        camo.ChangeCameraMode(p.spawnpointvalue);
         transform.gameObject.SetActive(false);
     }
 }

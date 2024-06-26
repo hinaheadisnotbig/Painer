@@ -365,6 +365,7 @@
 "Assets/Scriptes/MoveBlock.cs"
 "Assets/Scriptes/PlayerSystem.cs"
 "Assets/Scriptes/ScreenEffect.cs"
+"Assets/Scriptes/SpawnAnno.cs"
 "Assets/Scriptes/SpawnPointSystem.cs"
 "Assets/Scriptes/UsefulkeySystem.cs"
 -langversion:9.0

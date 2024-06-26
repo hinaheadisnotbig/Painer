@@ -11,7 +11,8 @@ public class PlayerSystem : MonoBehaviour
     public GameObject Screeneffect;
     public GameObject Game;
 
-    public float speed = 5f;
+    public int spawnpointvalue = 0;
+    public float speed = 4f;
     public bool isjumping = false;
     public bool notmoving = false;
     private bool jumppossible = true;
