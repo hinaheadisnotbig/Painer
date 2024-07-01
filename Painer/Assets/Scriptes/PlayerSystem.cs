@@ -11,6 +11,7 @@ public class PlayerSystem : MonoBehaviour
     public GameObject Screeneffect;
     public GameObject Game;
 
+    public int deadcount = 0;
     public int spawnpointvalue = 0;
     public float speed = 4f;
     public bool isjumping = false;
@@ -52,11 +53,11 @@ public class PlayerSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && !isjumping && jumppossible)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isjumping && jumppossible)
         {
             isjumping = true; jumppossible = false;
             characterRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-            StartCoroutine(JumpCooltime(1.5f));
+            StartCoroutine(JumpCooltime(1f));
         }
         inputAndDir();
     }
@@ -68,14 +69,14 @@ public class PlayerSystem : MonoBehaviour
             else characterRigidbody.MovePosition(transform.position + dir * speed * Time.deltaTime);
         }
     }
-    private void OnCollisionStay (Collision collision)
+   /* private void OnCollisionStay (Collision collision)
     {
         if(collision.transform.tag == "Ground" && isjumping) isjumping = false;
     }
     private void OnCollisionExit(Collision collision)
     {
         isjumping = true;
-    }
+    }*/
 
 
 
@@ -91,24 +92,8 @@ public class PlayerSystem : MonoBehaviour
        // }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.CompareTag("jumpblock"))
-        {
-            jumpPower = tempJumpPower;
-            UnityEngine.Debug.Log(tempJumpPower);
-
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("jumpblock"))
-        {
-            isjumping = false;
-            tempJumpPower = jumpPower;
-            jumpPower = other.gameObject.GetComponent<JumpBlock>().Jumpvaule;
-            UnityEngine.Debug.Log("π·¿Ω");
-        }
         if (other.transform.CompareTag("event"))
         {
             UnityEngine.Debug.Log("¿Ã∫•∆Æ");

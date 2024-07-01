@@ -7,12 +7,18 @@ public class SpawnPointSystem : MonoBehaviour
     public GameObject player;
     public GameObject anno;
     public int cameramode = 0;
+    CameraMove cam;
 
     private bool once = false;
     public bool test = false;
     private void Start()
     {
-        if (test) player.transform.position = transform.position;
+        cam = player.GetComponent<PlayerSystem>().cam;
+        if (test)
+        {
+            player.transform.position = transform.position;
+            cam.ChangeCameraMode(cameramode);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,8 +29,8 @@ public class SpawnPointSystem : MonoBehaviour
             {
                 if (anno != null)
                 {
-                    anno.gameObject.SetActive(true);
-                    anno.GetComponent<SpawnAnno>().Dis(1f);
+                    anno.SetActive(true);
+                    anno.GetComponent<SpawnAnno>().Dis(1f, 0);
                 }
                 player.GetComponent<PlayerSystem>().spawnpoint = gameObject;
                 player.GetComponent<PlayerSystem>().spawnpointvalue = cameramode;

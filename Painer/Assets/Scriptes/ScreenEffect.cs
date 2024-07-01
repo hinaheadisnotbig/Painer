@@ -27,7 +27,7 @@ public class ScreenEffect : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(1);
-        FadePannel.SetActive(false);
+        //FadePannel.SetActive(false);
     }
 
     //페이드 인
@@ -42,7 +42,11 @@ public class ScreenEffect : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(1f);
+        PlayerSystem player = System.GetComponent<GameOverSystem>().player.GetComponent<PlayerSystem>();
+        player.deadcount++;
+        System.GetComponent<GameOverSystem>().deathtext.text = "Death : " + player.deadcount;
         System.gameObject.SetActive(true);
-        
+
+
     }
 }

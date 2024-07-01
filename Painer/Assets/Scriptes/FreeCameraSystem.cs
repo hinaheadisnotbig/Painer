@@ -11,11 +11,15 @@ public class FreeCameraSystem : MonoBehaviour
     public GameObject target2;
     public GameObject cam;
     public GameObject camplace;
+    public GameObject anno;
+
     public int setmode = 0;
     public bool cam2 = false;
     public bool isworked = false;
     public bool isdisposed = false;
     public float Cameraspeed = 0.01f;
+    public bool isskiped = false;
+    public float annoskiptime = 3.5f;
 
     private void Start()
     {
@@ -45,9 +49,19 @@ public class FreeCameraSystem : MonoBehaviour
         c.target = target;
         transform.position = firstStartplace.transform.position;
         c.isfreemode = true;
-        Debug.Log("内风凭");
+        isskiped = false;
+        if (anno != null)
+        {
+            anno.SetActive(true);
+            anno.GetComponent<SpawnAnno>().Dis(annoskiptime, 1);
+        }
         while (target.transform.position != transform.position)
         {
+            if (Input.GetKey(KeyCode.Space) || isskiped)
+            {
+                isskiped = true;
+                break;
+            }
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Cameraspeed);
             yield return null;
         }
@@ -57,14 +71,23 @@ public class FreeCameraSystem : MonoBehaviour
             transform.position = Startplace.transform.position;
             while (target2.transform.position != transform.position)
             {
+                if (Input.GetKey(KeyCode.Space) || isskiped)
+                {
+                    isskiped = true;
+                    break;
+                }
                 transform.position = Vector3.MoveTowards(transform.position, target2.transform.position, Cameraspeed);
                 yield return null;
             }
         }
         yield return null;
-        Debug.Log("内风凭 场");
         c.isfreemode = false;
         transform.position = camplace.transform.position;
+        if (anno != null)
+        {
+            anno.transform.GetChild(1).gameObject.SetActive(false);
+            anno.SetActive(false);
+        }
         transform.gameObject.SetActive(false);
     }
 

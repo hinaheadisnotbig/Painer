@@ -6,18 +6,24 @@ public class SpawnAnno : MonoBehaviour
 {
     private void Start()
     {
-        transform.gameObject.SetActive(false);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+        gameObject.SetActive(false);
     }
 
-    public void Dis(float t)
+    public void Dis(float t, int child)
     {
-        StartCoroutine(display(t));
+        StartCoroutine(display(t, child));
     }
     // Start is called before the first frame update
-    public IEnumerator display(float t)
+    public IEnumerator display(float t, int child)
     {
+        transform.GetChild(child).gameObject.SetActive(true);
         yield return new WaitForSeconds(t);
-        transform.gameObject.SetActive(false);
+        transform.GetChild(child).gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
 
