@@ -354,6 +354,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scriptes/BackGroundSystem.cs"
+"Assets/Scriptes/ButtonSystem.cs"
 "Assets/Scriptes/CameraMove.cs"
 "Assets/Scriptes/ChangeBlock.cs"
 "Assets/Scriptes/DeathSystem.cs"
@@ -365,10 +366,12 @@
 "Assets/Scriptes/JumpSystem.cs"
 "Assets/Scriptes/KeyBlockSystem.cs"
 "Assets/Scriptes/MoveBlock.cs"
+"Assets/Scriptes/NoJumpSystem.cs"
 "Assets/Scriptes/PlayerSystem.cs"
 "Assets/Scriptes/ScreenEffect.cs"
 "Assets/Scriptes/SpawnAnno.cs"
 "Assets/Scriptes/SpawnPointSystem.cs"
+"Assets/Scriptes/TPblock.cs"
 "Assets/Scriptes/UsefulkeySystem.cs"
 -langversion:9.0
 

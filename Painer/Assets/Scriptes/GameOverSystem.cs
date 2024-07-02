@@ -13,6 +13,7 @@ public class GameOverSystem : MonoBehaviour
     public GameObject key;
     public GameObject Screeneffect;
     public GameObject intend;
+    public GameObject button;
     public TextMeshProUGUI deathtext;
 
 
@@ -56,6 +57,10 @@ public class GameOverSystem : MonoBehaviour
         {
             intend.transform.GetChild(i).transform.GetChild(0).gameObject.SetActive(false);
             intend.transform.GetChild(i).GetComponent<IntendBlock>().cooltime = true;
+        }
+        for (int i = 0; i < button.transform.childCount; i++)
+        {
+            if(button.transform.GetChild(i).GetComponent<ButtonSystem>().isnotreset == false) button.transform.GetChild(i).GetComponent<ButtonSystem>().Buttonwork(1);
         }
         p.transform.position = new Vector3(p.spawnpoint.transform.position.x, p.spawnpoint.transform.position.y+1, p.spawnpoint.transform.position.z);
         p.Dead = false;

@@ -69,16 +69,6 @@ public class PlayerSystem : MonoBehaviour
             else characterRigidbody.MovePosition(transform.position + dir * speed * Time.deltaTime);
         }
     }
-   /* private void OnCollisionStay (Collision collision)
-    {
-        if(collision.transform.tag == "Ground" && isjumping) isjumping = false;
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        isjumping = true;
-    }*/
-
-
 
     public void MovePlayer(int mode)
     {
@@ -86,10 +76,6 @@ public class PlayerSystem : MonoBehaviour
         {
             transform.position = new Vector3(4.93f, transform.position.y, transform.position.z);
         }
-        //if (mode == 1)
-       // {
-       //     transform.position = new Vector3(2.85f, transform.position.y, transform.position.z);
-       // }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -102,14 +88,7 @@ public class PlayerSystem : MonoBehaviour
         }
         if (other.transform.CompareTag("Death"))
         {
-            if (Dead == false)
-            {
-                UnityEngine.Debug.Log("»ç¸Á");
-                Screeneffect.transform.gameObject.SetActive(true);
-                Screeneffect.GetComponent<ScreenEffect>().fadeln(1);
-                Dead = true;
-                gameObject.SetActive(false);
-            }
+           PlayerDead();
         }
     }
 
@@ -136,6 +115,17 @@ public class PlayerSystem : MonoBehaviour
         tempJumpPower = j;
     }
 
+    public void PlayerDead()
+    {
+        if (Dead == false)
+        {
+            UnityEngine.Debug.Log("»ç¸Á");
+            Screeneffect.transform.gameObject.SetActive(true);
+            Screeneffect.GetComponent<ScreenEffect>().fadeln(1);
+            Dead = true;
+            gameObject.SetActive(false);
+        }
+    }
 
 
 

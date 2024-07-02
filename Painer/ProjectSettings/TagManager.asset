@@ -9,6 +9,10 @@ TagManager:
   - Wall
   - event
   - Death
+  - Intendblock
+  - TP_r
+  - TP_g
+  - button
   layers:
   - Default
   - TransparentFX
