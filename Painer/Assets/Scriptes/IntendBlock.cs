@@ -38,7 +38,7 @@ public class IntendBlock : MonoBehaviour
         yield return new WaitForSeconds(t);
         block.GetComponent<BoxCollider>().enabled = false;
         block.SetActive(false);
-        player.isjumping = true;
+        if(player != null) player.isjumping = true;
         yield return new WaitForSeconds(r);
         block.GetComponent<BoxCollider>().enabled = true;
         block.SetActive(true);

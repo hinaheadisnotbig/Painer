@@ -1,19 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnPointSystem : MonoBehaviour
 {
     public GameObject player;
     public GameObject anno;
-    public int cameramode = 0;
+
+    public SaveSpwanSystem save;
+    public int stagevalue = 0;
+
     CameraMove cam;
+    public int cameramode = 0;
 
     private bool once = false;
     public bool test = false;
     private void Start()
     {
+        while(save == null) save = GameObject.Find("SaveSpawnpoint").GetComponent<SaveSpwanSystem>();
         cam = player.GetComponent<PlayerSystem>().cam;
         if (test)
         {
@@ -35,6 +41,7 @@ public class SpawnPointSystem : MonoBehaviour
                 }
                 player.GetComponent<PlayerSystem>().spawnpoint = gameObject;
                 player.GetComponent<PlayerSystem>().spawnpointvalue = cameramode;
+                if (save != null) save.savestage = stagevalue;
                 once = true;
             }
         }

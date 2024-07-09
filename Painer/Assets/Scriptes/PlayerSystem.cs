@@ -24,10 +24,14 @@ public class PlayerSystem : MonoBehaviour
     float forceGravity = 8f;
 
     private Rigidbody characterRigidbody;
+    private SaveSpwanSystem save;
     Vector3 dir = Vector3.zero;
 
     void Awake()
     {
+        while(save == null) save = GameObject.Find("SaveSpawnpoint").GetComponent<SaveSpwanSystem>();
+        if (save.savespawnpoint != Vector3.zero) transform.position = save.savespawnpoint;
+        if (save.savelifes != 0) playerlifes = save.savelifes;
         characterRigidbody = GetComponent<Rigidbody>();
     }
     void inputAndDir()
@@ -55,9 +59,9 @@ public class PlayerSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape) && !isjumping)
         {
-            Game.GetComponent<GameOverSystem>().scenes.GotoTitle(1);
+            Game.GetComponent<GameOverSystem>().scenes.GotoTitle(1, spawnpoint, gameObject);
         }
         if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isjumping && jumppossible)
         {

@@ -369,6 +369,7 @@
 "Assets/Scriptes/NoJumpSystem.cs"
 "Assets/Scriptes/PlayerSystem.cs"
 "Assets/Scriptes/RotationSystem.cs"
+"Assets/Scriptes/SaveSpwanSystem.cs"
 "Assets/Scriptes/ScenesManager.cs"
 "Assets/Scriptes/ScreenEffect.cs"
 "Assets/Scriptes/SpawnAnno.cs"
