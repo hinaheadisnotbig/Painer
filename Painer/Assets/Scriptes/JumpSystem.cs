@@ -54,6 +54,6 @@ public class JumpSystem : MonoBehaviour
             playerSystem.isjumping = true;
             playerSystem.jumpPower = playerSystem.gettempJumpPower();
         }
-        
+
     }
 }

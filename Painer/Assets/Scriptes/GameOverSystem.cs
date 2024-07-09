@@ -14,12 +14,27 @@ public class GameOverSystem : MonoBehaviour
     public GameObject Screeneffect;
     public GameObject intend;
     public GameObject button;
+    public GameObject SpawnSystem;
     public TextMeshProUGUI deathtext;
-
+    public TextMeshProUGUI lifes;
+    
+    public ScenesManager scenes;
 
     // Start is called before the first frame update
     void Awake()
     {
+
+        while (scenes == null)
+        {
+            scenes = GameObject.Find("ScenesManager").GetComponent<ScenesManager>();
+        }
+            if (scenes.lv == 1)
+            {
+                player.GetComponent<PlayerSystem>().playerlifes = 3;
+                lifes.gameObject.SetActive(true);
+            }
+        
+        else lifes.gameObject.SetActive(false);
         Screeneffect.transform.gameObject.SetActive(false);
         transform.gameObject.SetActive(false);
     }
@@ -30,7 +45,7 @@ public class GameOverSystem : MonoBehaviour
         PlayerSystem p = player.GetComponent<PlayerSystem>();
         CameraMove camo = p.cam;
         p.gameObject.SetActive(true);
-        p.speed = 4.5f;
+        p.speed = 4.3f;
         p.isjumping = false;
         p.notmoving = false;
         p.setjumppossible(true);
@@ -62,9 +77,24 @@ public class GameOverSystem : MonoBehaviour
         {
             if(button.transform.GetChild(i).GetComponent<ButtonSystem>().isnotreset == false) button.transform.GetChild(i).GetComponent<ButtonSystem>().Buttonwork(1);
         }
-        p.transform.position = new Vector3(p.spawnpoint.transform.position.x, p.spawnpoint.transform.position.y+1, p.spawnpoint.transform.position.z);
+        if (p.playerlifes == 0 && scenes.lv == 1)
+        {
+            p.transform.position = new Vector3(5.16f, 7.76f, -9.7f);
+            p.spawnpoint = GameObject.Find("Startpoint");
+            ResetSpawnpoint();
+            p.playerlifes = 3;
+        }
+        else p.transform.position = new Vector3(p.spawnpoint.transform.position.x, p.spawnpoint.transform.position.y + 1, p.spawnpoint.transform.position.z);
         p.Dead = false;
         camo.ChangeCameraMode(p.spawnpointvalue);
         transform.gameObject.SetActive(false);
+    }
+
+    public void ResetSpawnpoint()
+    {
+        for(int i = 0; i<SpawnSystem.transform.childCount; i++)
+        {
+            SpawnSystem.transform.GetChild(i).GetComponent<SpawnPointSystem>().Setonce(false);
+        }
     }
 }

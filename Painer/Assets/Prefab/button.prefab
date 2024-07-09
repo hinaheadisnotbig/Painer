@@ -52,6 +52,7 @@ MonoBehaviour:
   brige: {fileID: 2971010906498012552}
   image_brige: {fileID: 2030411451356326560}
   button_Timer: {fileID: 973300156442025579}
+  cam: {fileID: 0}
   isnotreset: 0
   istimer: 0
   disposingtimer: 0
@@ -166,7 +167,7 @@ GameObject:
   - component: {fileID: 8204314206594055055}
   m_Layer: 0
   m_Name: brige
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

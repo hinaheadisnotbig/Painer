@@ -12,14 +12,16 @@ public class PlayerSystem : MonoBehaviour
     public GameObject Game;
 
     public int deadcount = 0;
+    public int playerlifes = 0;
     public int spawnpointvalue = 0;
-    public float speed = 4f;
+    public float speed = 4.3f;
     public bool isjumping = false;
     public bool notmoving = false;
     private bool jumppossible = true;
     private float tempJumpPower = 0f;
     public float jumpPower = 20f;
     public bool Dead = false;
+    float forceGravity = 8f;
 
     private Rigidbody characterRigidbody;
     Vector3 dir = Vector3.zero;
@@ -53,16 +55,22 @@ public class PlayerSystem : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Game.GetComponent<GameOverSystem>().scenes.GotoTitle(1);
+        }
         if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isjumping && jumppossible)
         {
             isjumping = true; jumppossible = false;
-            characterRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            characterRigidbody.AddForce(Vector3.up * jumpPower * 1.3f, ForceMode.Impulse);
             StartCoroutine(JumpCooltime(1f));
         }
         inputAndDir();
     }
     void FixedUpdate()
     {
+         characterRigidbody.AddForce(Vector3.down * forceGravity);
+        
         if (notmoving == false)
         {
             if (cam.cameraMode == 3) characterRigidbody.MovePosition(transform.position + -1 * dir * speed * Time.deltaTime);

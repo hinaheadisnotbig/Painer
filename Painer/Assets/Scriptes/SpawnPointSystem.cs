@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class SpawnPointSystem : MonoBehaviour
@@ -37,5 +38,14 @@ public class SpawnPointSystem : MonoBehaviour
                 once = true;
             }
         }
+    }
+
+    public void Setonce(bool once)
+    {
+        this.once = once;
+    }
+    public bool Getonce()
+    {
+        return once;
     }
 }

@@ -44,7 +44,9 @@ public class ScreenEffect : MonoBehaviour
         yield return new WaitForSeconds(1f);
         PlayerSystem player = System.GetComponent<GameOverSystem>().player.GetComponent<PlayerSystem>();
         player.deadcount++;
+        if (player.playerlifes >= 1) player.playerlifes--;
         System.GetComponent<GameOverSystem>().deathtext.text = "Death : " + player.deadcount;
+        System.GetComponent<GameOverSystem>().lifes.text = "Lifes : " + player.playerlifes;
         System.gameObject.SetActive(true);
 
 

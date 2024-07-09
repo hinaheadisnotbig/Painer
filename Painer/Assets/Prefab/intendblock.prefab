@@ -50,6 +50,7 @@ MonoBehaviour:
   isdisapperblock: 0
   cooltime: 1
   disappervalue: 1
+  respawnvalue: 1
 --- !u!65 &3813322293297452742
 BoxCollider:
   m_ObjectHideFlags: 0
